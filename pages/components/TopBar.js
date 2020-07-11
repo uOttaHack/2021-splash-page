@@ -13,7 +13,9 @@ export default function TopBar() {
           >
             Questions?
           </span>
-          <a href="mailto:hello@uottahack.ca">hello@uottahack.ca</a>
+          <a href="mailto:hello@uottahack.ca" title="Contact us">
+            hello@uottahack.ca
+          </a>
         </div>
       </div>
 
@@ -31,6 +33,7 @@ export default function TopBar() {
           .logo {
             width: 75px;
             height: 75px;
+            pointer-events: none;
           }
         `}
       </style>

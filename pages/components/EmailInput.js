@@ -26,6 +26,11 @@ export default function EmailInput() {
     <React.Fragment>
       <div className="email-input-container">
         <form id="emailForm">
+          <i
+            aria-hidden="true"
+            className="fas fa-arrow-right submit-arrow"
+            title="Register email"
+          ></i>
           <input
             type="email"
             name="email"
@@ -39,7 +44,22 @@ export default function EmailInput() {
       <style jsx>
         {`
           .email-input-container {
+            position: relative;
             margin-top: 50px;
+          }
+
+          .submit-arrow {
+            position: absolute;
+            right: 20px;
+            font-size: 1.6rem;
+            transform-origin: center;
+            transform: translate(0, 13.5px);
+            cursor: pointer;
+            transition: transform 0.15s ease-out;
+          }
+
+          .submit-arrow:hover {
+            transform: translate(3px, 13.5px);
           }
 
           #emailInput {

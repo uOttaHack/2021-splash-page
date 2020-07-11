@@ -8,14 +8,18 @@ export default function Home() {
       <Head>
         <title>uOttaHack 4 - uOttaHack 2021</title>
         <link rel="icon" href="/favicon.ico" />
+        <script
+          src="https://kit.fontawesome.com/be738c2079.js"
+          crossOrigin="anonymous" 
+        ></script>
       </Head>
 
       <TopBar />
 
       <main>
         <SplashBlock />
-        {/* <img src="/bg.svg" alt="Background" className="bg" /> */}
       </main>
+      <img src="/bg.svg" alt="Background" className="bg" />
 
       <style jsx>
         {`
@@ -26,6 +30,7 @@ export default function Home() {
             object-fit: cover;
             width: 100%;
             z-index: -10;
+            pointer-events: none;
           }
 
           main {

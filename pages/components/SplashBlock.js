@@ -1,4 +1,5 @@
 import EmailInput from "./EmailInput";
+import SocialMedias from "./SocialMedias";
 
 export default function SplashBlock() {
   return (
@@ -11,9 +12,14 @@ export default function SplashBlock() {
           Feel free to enter your email to recieve updates from the team!
         </span>
         <EmailInput />
-        <a href="mailto:sponsor@uottahack.ca" style={{ marginTop: 50 + "px" }}>
+        <a
+          href="mailto:sponsor@uottahack.ca"
+          style={{ marginTop: 50 + "px", fontSize: 1.25 + "rem" }}
+          title="Become a sponsor"
+        >
           Interested in sponsoring?
         </a>
+        <SocialMedias />
       </div>
 
       <style jsx>
@@ -23,7 +29,6 @@ export default function SplashBlock() {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: red;
             margin-top: 50px;
           }
           .uoh-header {
