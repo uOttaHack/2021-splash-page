@@ -1,6 +1,6 @@
-import Head from 'next/head';
-import TopBar from './components/TopBar'
-import SplashBlock from './components/SplashBlock'
+import Head from "next/head";
+import TopBar from "./components/TopBar";
+import SplashBlock from "./components/SplashBlock";
 
 export default function Home() {
   return (
@@ -10,64 +10,68 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <TopBar />
+
       <main>
-        <TopBar />
         <SplashBlock />
-        <img src="/bg.svg" alt="Background" className="bg"/>
+        {/* <img src="/bg.svg" alt="Background" className="bg" /> */}
       </main>
 
       <style jsx>
-      {`
-        .bg {
-          position: absolute;
-          bottom: -35px;
-          left: 0;
-          object-fit: cover;
-          width: 100%;  
-        } 
-      `}
+        {`
+          .bg {
+            position: absolute;
+            bottom: -35px;
+            left: 0;
+            object-fit: cover;
+            width: 100%;
+            z-index: -10;
+          }
+
+          main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+          }
+        `}
       </style>
       <style global jsx>
-      {`
-        body {
-          margin: 0;
-          box-sizing: border-box;
-          font-family: 'Gilroy-Regular';
-          overflow: hidden;
-        }
+        {`
+          body {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Gilroy-Regular";
+            overflow: hidden;
+          }
 
-        @font-face {
-          font-family: 'Gilroy-Regular';
-          src: url('/fonts/Gilroy-Regular.ttf'); 
-        }
+          @font-face {
+            font-family: "Gilroy-Regular";
+            src: url("/fonts/Gilroy-Regular.ttf");
+          }
 
-        @font-face {
-          font-family: 'Gilroy-Bold';
-          src: url('/fonts/Gilroy-Bold.ttf');
-        }
+          @font-face {
+            font-family: "Gilroy-Medium";
+            src: url("/fonts/Gilroy-Medium.ttf");
+          }
 
-        @font-face {
-          font-family: 'Harabara';
-          src: url('/fonts/Harabara.ttf');
-        }
+          @font-face {
+            font-family: "Gilroy-Bold";
+            src: url("/fonts/Gilroy-Bold.ttf");
+          }
 
-        a {
-          text-decoration: none;
-          color: #1DA1F2;
-          font-size: 1.1rem;
-        }
+          @font-face {
+            font-family: "Harabara";
+            src: url("/fonts/Harabara.ttf");
+          }
 
-        b {
-          font-family: 'Gilroy-Bold';
-          font-size: 1.1rem;
-        }
-
-        h1 {
-          font-size: 3.5rem;
-          font-family: 'Harabara';
-          letter-spacing: 1.5px;
-        }
-      `}
+          a {
+            text-decoration: none;
+            color: #1da1f2;
+            font-family: "Gilroy-Regular";
+            font-size: 1.3rem;
+          }
+        `}
       </style>
     </div>
   );
