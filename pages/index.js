@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import TopBar from './components/TopBar'
+import SplashBlock from './components/SplashBlock'
 
 export default function Home() {
   return (
@@ -11,12 +12,20 @@ export default function Home() {
 
       <main>
         <TopBar />
+        <SplashBlock />
+        <img src="/bg.svg" alt="Background" className="bg"/>
       </main>
 
       <style jsx>
-        {`
-          
-        `}
+      {`
+        .bg {
+          position: absolute;
+          bottom: -35px;
+          left: 0;
+          object-fit: cover;
+          width: 100%;  
+        } 
+      `}
       </style>
       <style global jsx>
       {`
@@ -24,6 +33,7 @@ export default function Home() {
           margin: 0;
           box-sizing: border-box;
           font-family: 'Gilroy-Regular';
+          overflow: hidden;
         }
 
         @font-face {
@@ -32,8 +42,13 @@ export default function Home() {
         }
 
         @font-face {
-          font-family: 'Gilroy-ExtraBold';
-          src: url('/fonts/Gilroy-ExtraBold.ttf');
+          font-family: 'Gilroy-Bold';
+          src: url('/fonts/Gilroy-Bold.ttf');
+        }
+
+        @font-face {
+          font-family: 'Harabara';
+          src: url('/fonts/Harabara.ttf');
         }
 
         a {
@@ -43,7 +58,14 @@ export default function Home() {
         }
 
         b {
+          font-family: 'Gilroy-Bold';
           font-size: 1.1rem;
+        }
+
+        h1 {
+          font-size: 3.5rem;
+          font-family: 'Harabara';
+          letter-spacing: 1.5px;
         }
       `}
       </style>

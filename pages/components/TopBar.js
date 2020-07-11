@@ -12,17 +12,17 @@ export default function TopBar() {
         <style jsx>
           {`
             .topbar {
-                width: calc(100% - 20em);
+                width: calc(100% - 16em);
                 height: 125px;
-                padding: 0 10em 0 10em;
+                padding: 0 8em 0 9em;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
             }
 
             .logo {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
             }
           `}
         </style>
