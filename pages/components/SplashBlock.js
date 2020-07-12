@@ -14,7 +14,7 @@ export default function SplashBlock() {
         <EmailInput />
         <a
           href="mailto:sponsor@uottahack.ca"
-          style={{ marginTop: 50 + "px", fontSize: 1.25 + "rem" }}
+          className="sponsor"
           title="Become a sponsor"
         >
           Interested in sponsoring?
@@ -31,6 +31,7 @@ export default function SplashBlock() {
             justify-content: center;
             margin-top: 50px;
           }
+
           .uoh-header {
             font-size: 4.2rem;
             font-family: "Harabara";
@@ -39,11 +40,37 @@ export default function SplashBlock() {
             width: 100%;
             text-align: center;
           }
+
           .uoh-text {
             font-size: 1.3rem;
             font-family: "Gilroy-Medium";
             width: 100%;
             text-align: center;
+          }
+
+          .sponsor {
+            margin-top: 50px;
+            font-size: 1.25rem;
+          }
+
+          @media only screen and (max-width: 1000px) {
+            .splash-block {
+              margin-top: 0;
+            }
+
+            .uoh-text {
+              font-size: 1rem;
+            }
+
+            .sponsor {
+              margin-top: 25px;
+              font-size: 1rem;
+            }
+
+            .uoh-header {
+              font-size: 2.25rem;
+              margin-top: 12.5px;
+            }
           }
         `}
       </style>

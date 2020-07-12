@@ -8,10 +8,10 @@ export default function Home() {
       <Head>
         <title>uOttaHack 4 - uOttaHack 2021</title>
         <link rel="icon" href="/favicon.ico" />
-        <script
-          src="https://kit.fontawesome.com/be738c2079.js"
-          crossOrigin="anonymous" 
-        ></script>
+        <link
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"
+        />
       </Head>
 
       <TopBar />
@@ -19,7 +19,9 @@ export default function Home() {
       <main>
         <SplashBlock />
       </main>
-      <img src="/bg.svg" alt="Background" className="bg" />
+      <div className="bg-container">
+        <img src="/bg.svg" alt="Background" className="bg" />
+      </div>
 
       <style jsx>
         {`
@@ -33,11 +35,37 @@ export default function Home() {
             pointer-events: none;
           }
 
+          .container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+          }
+
           main {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
+          }
+
+          @media only screen and (max-width: 1000px) {
+            main {
+              padding: 0 25px 0 25px;
+              width: calc(100% - 50px);
+            }
+
+            .bg {
+              width: 200%;
+              left: -100%;
+              bottom: -50px;
+            }
+
+            .bg-container {
+              position: absolute;
+              top: 0;
+              width: 100%;
+              height: 100%;
+            }
           }
         `}
       </style>

@@ -3,7 +3,7 @@ export default function TopBar() {
     <div className="container">
       <div className="topbar">
         <img src="/logo.svg" alt="uOttaHack 4 logo" className="logo" />
-        <div>
+        <div className="questions">
           <span
             style={{
               marginRight: 12 + "px",
@@ -24,7 +24,7 @@ export default function TopBar() {
           .topbar {
             width: calc(100% - 16em);
             height: 125px;
-            padding: 0 8em 0 9em;
+            padding: 0 8em 0 8em;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -34,6 +34,29 @@ export default function TopBar() {
             width: 75px;
             height: 75px;
             pointer-events: none;
+          }
+
+          .questions {
+            display: block;
+          }
+
+          @media only screen and (max-width: 1000px) {
+            .topbar {
+              margin-top: 50px;
+              justify-content: center;
+              width: 100%;
+              height: 60px;
+              padding: 0;
+            }
+
+            .logo {
+              width: 60px;
+              height: 60px;
+            }
+
+            .questions {
+              display: none;
+            }
           }
         `}
       </style>

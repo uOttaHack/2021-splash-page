@@ -1,14 +1,10 @@
-/* e.preventDefault();
-
-        // get user info
-        const email = form["signin-email"].value; */
-
+import FontAwesome from "react-fontawesome";
 import { useEffect } from "react";
 
 export default function EmailInput() {
   useEffect(() => {
     const form = document.getElementById("emailForm");
-    form.addEventListener("submit", (event) => {
+    const submit = (event) => {
       event.preventDefault();
       const emailInput = document.getElementById("emailInput");
       const isValidEmail = emailInput.checkValidity();
@@ -19,18 +15,20 @@ export default function EmailInput() {
       } else {
         console.log("not valid");
       }
-    });
+    };
+    form.addEventListener("submit", () => submit(event));
+
+    return form.removeEventListener("submit", () => submit(event));
   }, []);
 
   return (
     <React.Fragment>
       <div className="email-input-container">
         <form id="emailForm">
-          <i
-            aria-hidden="true"
-            className="fas fa-arrow-right submit-arrow"
-            title="Register email"
-          ></i>
+          <span className="submit-arrow">
+            <FontAwesome name="arrow-right" />
+          </span>
+          <button name="submit-btn" type="submit" className="submit-button" />
           <input
             type="email"
             name="email"
@@ -49,22 +47,39 @@ export default function EmailInput() {
           }
 
           .submit-arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: absolute;
             right: 20px;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             transform-origin: center;
             transform: translate(0, 13.5px);
             cursor: pointer;
-            transition: transform 0.15s ease-out;
+            height: 25px;
+            width: 25px;
+            z-index: 2;
+            pointer-events: none;
           }
 
-          .submit-arrow:hover {
-            transform: translate(3px, 13.5px);
+          .submit-button {
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+            transform-origin: center;
+            transform: translate(0, 13.5px);
+            height: 25px;
+            width: 25px;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            z-index: 1;
           }
 
           #emailInput {
             width: 450px;
             height: 37.5px;
+            margin: 0 !important;
             border-radius: 30px;
             outline: none;
             padding: 6.25px 25px 6.25px 25px;
@@ -81,6 +96,36 @@ export default function EmailInput() {
           input:-webkit-autofill:focus,
           input:-webkit-autofill:active {
             -webkit-box-shadow: 0 0 0 30px white inset !important;
+          }
+
+          @media only screen and (max-width: 1000px) {
+            #emailInput {
+              width: calc(100% - 29px);
+              height: 25px;
+              padding: 6.25px 12.5px 6.25px 12.5px;
+              font-size: 1rem;
+            }
+
+            .email-input-container {
+              margin-top: 25px;
+              width: 100%;
+            }
+
+            .submit-arrow {
+              right: 12.5px;
+              font-size: 1.2rem;
+              transform-origin: center;
+              transform: translate(0, 8px);
+              cursor: pointer;
+            }
+
+            .submit-button {
+              position: absolute;
+              right: 12.5px;
+              cursor: pointer;
+              transform-origin: center;
+              transform: translate(0, 8px);
+            }
           }
         `}
       </style>
