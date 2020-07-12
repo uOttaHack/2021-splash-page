@@ -1,32 +1,45 @@
 import FontAwesome from "react-fontawesome";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Context from "../context/context";
 import { useContext } from "react";
 
 export default function EmailInput() {
   const context = useContext(Context);
+  const [message, setMessage] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [lastRequest, setLastRequest] = useState(null);
 
   useEffect(() => {
     const form = document.getElementById("emailForm");
+    form.addEventListener("submit", () => submit(event, form));
 
-    const submit = async (event) => {
-      event.preventDefault();
+    return form.removeEventListener("submit", () => submit(event, form));
+  }, []);
+
+  const submit = async (event, form) => {
+    event.preventDefault();
+
+    if (
+      lastRequest === null ||
+      (new Date().getTime() - lastRequest.getTime()) / 1000 > 5
+    ) {
       const emailInput = document.getElementById("emailInput");
       const isValidEmail = emailInput.checkValidity();
       const email = form["email"].value.trim();
 
       if (isValidEmail) {
         const registerStatus = await context.registerEmail(email);
-        console.log(registerStatus);
+        setLastRequest(new Date());
+        setMessage(registerStatus.msg);
+        setSuccess(registerStatus.success);
       } else {
-        console.log("not valid");
+        setMessage("Please enter a valid email.");
+        setSuccess(false);
       }
-    };
 
-    form.addEventListener("submit", () => submit(event));
-
-    return form.removeEventListener("submit", () => submit(event));
-  }, []);
+      emailInput.value = "";
+    }
+  };
 
   return (
     <React.Fragment>
@@ -44,6 +57,11 @@ export default function EmailInput() {
             required
           />
         </form>
+        {message ? (
+          <span className={success ? "feedback green" : "feedback red"}>
+            {message}
+          </span>
+        ) : null}
       </div>
 
       <style jsx>
@@ -51,6 +69,9 @@ export default function EmailInput() {
           .email-input-container {
             position: relative;
             margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
 
           .submit-arrow {
@@ -96,6 +117,19 @@ export default function EmailInput() {
             -webkit-filter: none;
             -webkit-text-fill-color: black;
             filter: none;
+          }
+
+          .feedback {
+            font-size: 1.25rem;
+            margin-top: 6.25px;
+          }
+
+          .red {
+            color: #c23434;
+          }
+
+          .green {
+            color: #34c26e;
           }
 
           input:-webkit-autofill,
