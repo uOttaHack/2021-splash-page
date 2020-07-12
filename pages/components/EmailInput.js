@@ -1,21 +1,28 @@
 import FontAwesome from "react-fontawesome";
 import { useEffect } from "react";
+import Context from "../context/context";
+import { useContext } from "react";
 
 export default function EmailInput() {
+  const context = useContext(Context);
+
   useEffect(() => {
     const form = document.getElementById("emailForm");
-    const submit = (event) => {
+
+    const submit = async (event) => {
       event.preventDefault();
       const emailInput = document.getElementById("emailInput");
       const isValidEmail = emailInput.checkValidity();
-      const email = form["email"].value;
+      const email = form["email"].value.trim();
 
       if (isValidEmail) {
-        console.log(email.trim());
+        const registerStatus = await context.registerEmail(email);
+        console.log(registerStatus);
       } else {
         console.log("not valid");
       }
     };
+
     form.addEventListener("submit", () => submit(event));
 
     return form.removeEventListener("submit", () => submit(event));
