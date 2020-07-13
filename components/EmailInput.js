@@ -1,6 +1,6 @@
 import FontAwesome from "react-fontawesome";
 import { useEffect, useState } from "react";
-import Context from "../context/context";
+import Context from "./context/context";
 import { useContext } from "react";
 
 export default function EmailInput() {

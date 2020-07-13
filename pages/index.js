@@ -1,7 +1,7 @@
 import Head from "next/head";
-import TopBar from "./components/TopBar";
-import SplashBlock from "./components/SplashBlock";
-import GlobalState from "./context/GlobalState";
+import TopBar from "../components/TopBar";
+import SplashBlock from "../components/SplashBlock";
+import GlobalState from "../components/context/GlobalState";
 
 export default function Home() {
   return (

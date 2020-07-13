@@ -15,12 +15,10 @@ const GlobalState = (props) => {
     measurementId: "G-Y8Z7Z5FGMZ",
   };
 
-  // Initialize Firebase
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
   }
-
   const db = firebase.firestore();
 
   const checkIfEmailExists = async (email) => {
