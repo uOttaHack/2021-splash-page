@@ -74,6 +74,10 @@ export default function EmailInput() {
             align-items: center;
           }
 
+          #emailForm {
+            position: relative;
+          }
+
           .submit-arrow {
             display: flex;
             justify-content: center;

@@ -17,6 +17,8 @@
 
 # misc
 .DS_Store
+*.cache
+*.log
 
 # debug
 npm-debug.log*
