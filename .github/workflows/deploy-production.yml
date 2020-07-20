@@ -15,12 +15,10 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Unit test Firestore security rules against emulator
-        uses: w9jds/firebase-action@master
-        with:
-          args: emulators:exec --only firestore --project uottahack-2021 'npm run test'
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Firebase unit tests against emulator
+        run: |
+          java -version
+          npx firebase-tools emulators:exec --only firestore --project uottahack-2021 'npm run test'
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
