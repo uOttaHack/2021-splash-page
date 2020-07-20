@@ -16,6 +16,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
+### Recommended Extensions
+
+- [Firestore Security Rules syntax highlighting](https://marketplace.visualstudio.com/items?itemName=toba.vsfire)
+- [Spelling checker for source code](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+
 ## Notes
 
 The `@firebase/testing` dev dependency is set to an older version due to a bug with the current ones.

@@ -9,7 +9,7 @@ export default function SplashBlock() {
         <span className="uoh-text">
           With uOttaHack 3 wrapped up, it's about time to prepare for uOttaHack
           4. <br />
-          Feel free to enter your email to recieve updates from the team!
+          Feel free to enter your email to receive updates from the team!
         </span>
         <EmailInput />
         <a
