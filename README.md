@@ -32,5 +32,5 @@ firebase emulators:start --only firestore
 Execute unit tests with:
 
 ```bash
-npm run tests
+npm run test
 ```
