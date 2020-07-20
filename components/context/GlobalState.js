@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Context from "./context";
-import firebase from "firebase/app";
+import firebase, { firestore } from "firebase/app";
 import "firebase/analytics";
 import "firebase/firestore";
 
@@ -17,67 +17,32 @@ const GlobalState = (props) => {
 
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       firebase.analytics();
     }
   }
   const db = firebase.firestore();
 
-  const checkIfEmailExists = async (email) => {
-    return new Promise((resolve) => {
-      try {
-        db.collection("contact")
-          .doc("emails_list")
-          .get()
-          .then((doc) => {
-            const data = doc.data();
-            const emails = data.emails;
-            emails.forEach((elem) => {
-              if (elem === email) {
-                resolve(true);
-              }
-            });
-            resolve(false);
-          });
-      } catch {
-        resolve(null);
-      }
-    });
-  };
-
   const registerEmail = async (email) => {
-    const emailAlreadyExists = await checkIfEmailExists(email);
-    let registerStatus = {
+    const registerStatus = {
       msg: "",
       success: null,
     };
 
-    if (emailAlreadyExists === null) {
-      registerStatus.msg = "An unexpected error occured. Please try again.";
-      registerStatus.success = false;
-      return registerStatus;
-    }
+    try {
+      await db
+        .collection("emails")
+        .doc(email)
+        .set({ createdAt: firestore.FieldValue.serverTimestamp() });
 
-    if (!emailAlreadyExists) {
-      try {
-        db.collection("contact")
-          .doc("emails_list")
-          .update({
-            emails: firebase.firestore.FieldValue.arrayUnion(email),
-          });
-        registerStatus.msg = "Thanks for staying in the loop!";
-        registerStatus.success = true;
-        return registerStatus;
-      } catch {
-        registerStatus.msg = "An unexpected error occured. Please try again.";
-        registerStatus.success = false;
-        return registerStatus;
-      }
-    } else {
+      registerStatus.msg = "Thanks for staying in the loop!";
+      registerStatus.success = true;
+    } catch (error) {
       registerStatus.msg = "Email has already been registered.";
       registerStatus.success = false;
-      return registerStatus;
     }
+
+    return registerStatus;
   };
 
   return (

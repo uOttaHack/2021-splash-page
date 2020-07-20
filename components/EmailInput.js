@@ -24,8 +24,11 @@ export default function EmailInput() {
       (new Date().getTime() - lastRequest.getTime()) / 1000 > 5
     ) {
       const emailInput = document.getElementById("emailInput");
-      const isValidEmail = emailInput.checkValidity();
       const email = form["email"].value.trim();
+      const emailRegex = new RegExp(
+        "^[\\w.\\-]{1,100}@[\\w.\\-]{1,100}\\.[A-Za-z]{2,4}$"
+      );
+      const isValidEmail = emailRegex.test(email) && email.length < 100;
 
       if (isValidEmail) {
         const registerStatus = await context.registerEmail(email);
