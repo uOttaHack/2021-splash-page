@@ -12,7 +12,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Build
         run: npm run build
       - name: Archive Production Artifact
@@ -35,6 +35,6 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting,firestore
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
+    "test": "jest",
     "build": "next build && next export",
     "start": "next start"
   },
@@ -13,5 +15,9 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-fontawesome": "^1.7.1"
+  },
+  "devDependencies": {
+    "@firebase/testing": "^0.15.0",
+    "jest": "^26.1.0"
   }
 }
