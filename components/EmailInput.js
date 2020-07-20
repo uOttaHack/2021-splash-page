@@ -5,26 +5,18 @@ import { useContext } from "react";
 
 export default function EmailInput() {
   const context = useContext(Context);
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [success, setSuccess] = useState(null);
   const [lastRequest, setLastRequest] = useState(null);
 
-  useEffect(() => {
-    const form = document.getElementById("emailForm");
-    form.addEventListener("submit", () => submit(event, form));
-
-    return form.removeEventListener("submit", () => submit(event, form));
-  }, []);
-
-  const submit = async (event, form) => {
+  const submit = async (event) => {
     event.preventDefault();
 
     if (
       lastRequest === null ||
       (new Date().getTime() - lastRequest.getTime()) / 1000 > 5
     ) {
-      const emailInput = document.getElementById("emailInput");
-      const email = form["email"].value.trim();
       const emailRegex = new RegExp(
         "^[\\w.\\-]{1,100}@[\\w.\\-]{1,100}\\.[A-Za-z]{2,4}$"
       );
@@ -47,7 +39,7 @@ export default function EmailInput() {
   return (
     <React.Fragment>
       <div className="email-input-container">
-        <form id="emailForm">
+        <form id="emailForm" onSubmit={submit}>
           <span className="submit-arrow">
             <FontAwesome name="arrow-right" />
           </span>
@@ -58,13 +50,15 @@ export default function EmailInput() {
             id="emailInput"
             placeholder="Enter in your email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value.trim())}
           />
         </form>
-        {message ? (
+        {message && (
           <span className={success ? "feedback green" : "feedback red"}>
             {message}
           </span>
-        ) : null}
+        )}
       </div>
 
       <style jsx>
@@ -117,6 +111,7 @@ export default function EmailInput() {
             margin: 0 !important;
             border-radius: 30px;
             outline: none;
+            box-shadow: none;
             padding: 6.25px 25px 6.25px 25px;
             font-size: 1.3rem;
             font-family: "Gilroy-Regular";
@@ -129,6 +124,7 @@ export default function EmailInput() {
           .feedback {
             font-size: 1.25rem;
             margin-top: 6.25px;
+            text-align: center;
           }
 
           .red {
@@ -139,14 +135,12 @@ export default function EmailInput() {
             color: #34c26e;
           }
 
-          input:-webkit-autofill,
-          input:-webkit-autofill:hover,
-          input:-webkit-autofill:focus,
-          input:-webkit-autofill:active {
-            -webkit-box-shadow: 0 0 0 30px white inset !important;
-          }
-
           @media only screen and (max-width: 1000px) {
+            #emailForm {
+              width: 90%;
+              max-width: 400px;
+            }
+
             #emailInput {
               width: calc(100% - 29px);
               height: 25px;

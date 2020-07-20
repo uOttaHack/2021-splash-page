@@ -1,18 +1,10 @@
 export default function TopBar() {
   return (
     <div className="container">
-      <div className="topbar">
+      <div className="topBar">
         <img src="/logo.svg" alt="uOttaHack 4 logo" className="logo" />
         <div className="questions">
-          <span
-            style={{
-              marginRight: 12 + "px",
-              fontFamily: "Gilroy-Medium",
-              fontSize: 1.3 + "rem",
-            }}
-          >
-            Questions?
-          </span>
+          <span>Questions?</span>
           <a href="mailto:hello@uottahack.ca" title="Contact us">
             hello@uottahack.ca
           </a>
@@ -21,7 +13,7 @@ export default function TopBar() {
 
       <style jsx>
         {`
-          .topbar {
+          .topBar {
             width: calc(100% - 16em);
             height: 125px;
             padding: 0 8em 0 8em;
@@ -40,9 +32,14 @@ export default function TopBar() {
             display: block;
           }
 
+          .questions > span {
+            margin-right: 12px;
+            font: bold 1.3rem "Gilroy-Medium", sans-serif;
+          }
+
           @media only screen and (max-width: 1000px) {
-            .topbar {
-              margin-top: 50px;
+            .topBar {
+              margin-top: min(15vh, 125px);
               justify-content: center;
               width: 100%;
               height: 60px;

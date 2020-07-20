@@ -8,7 +8,7 @@ export default function SplashBlock() {
         <h1 className="uoh-header">uOttaHack4</h1>
         <span className="uoh-text">
           With uOttaHack 3 wrapped up, it's about time to prepare for uOttaHack
-          4. <br />
+          4. <br id="text-break" />
           Feel free to enter your email to receive updates from the team!
         </span>
         <EmailInput />
@@ -56,6 +56,7 @@ export default function SplashBlock() {
           @media only screen and (max-width: 1000px) {
             .splash-block {
               margin-top: 0;
+              max-width: 550px;
             }
 
             .uoh-text {
@@ -70,6 +71,12 @@ export default function SplashBlock() {
             .uoh-header {
               font-size: 2.25rem;
               margin-top: 12.5px;
+            }
+          }
+
+          @media only screen and (max-width: 600px) {
+            #text-break {
+              display: none;
             }
           }
         `}
