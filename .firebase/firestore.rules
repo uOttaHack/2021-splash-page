@@ -1,14 +1,15 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function isServerTimestamp(time) {
-      return time == request.time;
+    function isServerTimestamp(value) {
+      return value is timestamp &&
+        value == request.time;
     }
 
-    function isEmail(email) {
-      return email is string &&
-        email.size() < 100 &&
-        email.matches("^[\\w.\\-]{1,100}@[\\w.\\-]{1,100}\\.[A-Za-z]{2,4}$");
+    function isEmail(value) {
+      return value is string &&
+        value.size() < 100 &&
+        value.matches("^[\\w.\\-]{1,100}@[\\w.\\-]{1,100}\\.[A-Za-z]{2,4}$");
     }
 
     // Secure by default
