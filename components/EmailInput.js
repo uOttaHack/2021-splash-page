@@ -1,7 +1,6 @@
 import FontAwesome from "react-fontawesome";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Context from "./context/context";
-import { useContext } from "react";
 
 export default function EmailInput() {
   const context = useContext(Context);
@@ -9,6 +8,7 @@ export default function EmailInput() {
   const [message, setMessage] = useState(null);
   const [success, setSuccess] = useState(null);
   const [lastRequest, setLastRequest] = useState(null);
+  const [isOverArrow, setIsOverArrow] = useState(false);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -23,35 +23,48 @@ export default function EmailInput() {
       const isValidEmail = emailRegex.test(email) && email.length < 100;
 
       if (isValidEmail) {
+        setLastRequest(new Date());
         const registerStatus = await context.registerEmail(email);
         setLastRequest(new Date());
+
         setMessage(registerStatus.msg);
         setSuccess(registerStatus.success);
+
+        setEmail("");
       } else {
         setMessage("Please enter a valid email.");
         setSuccess(false);
       }
-
-      emailInput.value = "";
     }
   };
 
   return (
     <React.Fragment>
       <div className="email-input-container">
-        <form id="emailForm" onSubmit={submit}>
-          <span className="submit-arrow">
+        <form id="emailForm" onSubmit={(event) => submit(event)}>
+          <span
+            className="submit-arrow"
+            style={
+              isOverArrow
+                ? { opacity: 0.6, transition: "opacity 0.2s" }
+                : undefined
+            }
+          >
             <FontAwesome name="arrow-right" />
           </span>
-          <button name="submit-btn" type="submit" className="submit-button" />
+          <button
+            name="submit-btn"
+            type="submit"
+            className="submit-button"
+            onMouseEnter={() => setIsOverArrow(true)}
+            onMouseLeave={() => setIsOverArrow(false)}
+          />
           <input
-            type="email"
             name="email"
             id="emailInput"
             placeholder="Enter in your email"
-            required
             value={email}
-            onChange={(e) => setEmail(e.target.value.trim())}
+            onChange={(event) => setEmail(event.target.value.trim())}
           />
         </form>
         {message && (

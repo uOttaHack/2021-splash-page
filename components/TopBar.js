@@ -26,6 +26,7 @@ export default function TopBar() {
             width: 75px;
             height: 75px;
             pointer-events: none;
+            user-select: none;
           }
 
           .questions {

@@ -101,6 +101,11 @@ export default function Home() {
             color: #1da1f2;
             font-family: "Gilroy-Regular";
             font-size: 1.3rem;
+            transition: opacity 0.2s;
+          }
+
+          a:hover {
+            opacity: 0.6;
           }
         `}
       </style>
