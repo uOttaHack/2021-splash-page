@@ -1,4 +1,4 @@
-name: Build and Deploy to Firebase Hosting (Production)
+name: production
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -25,7 +25,7 @@ jobs:
           name: out
           path: out
   deploy:
-    name: Deploy
+    name: deploy
     needs: build
     runs-on: ubuntu-latest
     steps:
