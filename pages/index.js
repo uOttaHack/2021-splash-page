@@ -26,25 +26,17 @@ export default function Home() {
       </div>
       <style jsx>
         {`
-          .bg {
-            position: absolute;
-            bottom: -35px;
-            left: 0;
-            object-fit: cover;
-            width: 100%;
-            z-index: -10;
-            pointer-events: none;
-          }
-
           .container {
             width: 100%;
+            min-width: 260px;
             height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             background-image: url("bg.svg");
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-attachment: local;
             background-position: center bottom;
-            background-size: contain;
+            background-size: 100vw auto;
           }
 
           main {
@@ -52,6 +44,7 @@ export default function Home() {
             flex-direction: column;
             align-items: center;
             width: 100%;
+            margin-bottom: 50px;
           }
 
           @media only screen and (max-width: 1000px) {
@@ -61,14 +54,55 @@ export default function Home() {
             }
 
             .container {
-              background-position: right bottom;
-              background-size: auto calc(1000 / 1920 * 749px);
+              background-position: right bottom
+                min(
+                  0px,
+                  calc(
+                    100vh - (var(--inferred-bg-height)) -
+                      (
+                        var(--top-bar-height) + var(--content-height) +
+                          var(--height-offset)
+                      )
+                  )
+                );
+              background-size: auto
+                max(
+                  calc(
+                    100vh -
+                      (
+                        var(--top-bar-height) + var(--content-height) +
+                          var(--height-offset)
+                      )
+                  ),
+                  calc(var(--inferred-bg-height))
+                );
+            }
+          }
+
+          @media only screen and (max-width: 600px) {
+            --height-offset: 50px;
+          }
+
+          @media only screen and (max-width: 350px) {
+            --height-offset: 75px;
+          }
+
+          @media only screen and (min-width: 1000px) and (max-height: 780px) {
+            .container {
+              background-position: center bottom min(0px, calc(100vh - 780px));
             }
           }
         `}
       </style>
       <style global jsx>
         {`
+          :root {
+            --top-bar-height: min(15vh, 125px);
+            --content-height: 300px;
+            --height-offset: 0px;
+            --inferred-bg-height: 100vw / (1920 / 749);
+          }
+
           body {
             margin: 0;
             box-sizing: border-box;

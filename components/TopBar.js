@@ -40,7 +40,7 @@ export default function TopBar() {
 
           @media only screen and (max-width: 1000px) {
             .topBar {
-              margin-top: min(15vh, 125px);
+              margin-top: var(--top-bar-height);
               justify-content: center;
               width: 100%;
               height: 60px;
