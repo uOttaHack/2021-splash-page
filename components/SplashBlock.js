@@ -13,7 +13,7 @@ export default function SplashBlock() {
         </span>
         <EmailInput />
         <a
-          href="mailto:sponsor@uottahack.ca"
+          href="mailto:sponsorship@uottahack.ca"
           className="sponsor"
           title="Become a sponsor"
         >
