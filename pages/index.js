@@ -15,6 +15,10 @@ export default function Home() {
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
               rel="stylesheet"
             />
+            <meta
+              name="description"
+              content="With uOttaHack 3 wrapped up, it's about time to prepare for uOttaHack 4."
+            />
           </Head>
 
           <TopBar />
